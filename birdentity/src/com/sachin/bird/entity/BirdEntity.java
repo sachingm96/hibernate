@@ -14,10 +14,10 @@ import lombok.NoArgsConstructor;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "bird")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Table(name = "bird")
 public class BirdEntity implements Serializable {
 
 	@Id

@@ -16,6 +16,8 @@ public interface BirdDAO {
 
 	void saveList(List<BirdEntity> entity);
 	
-	void deleteList(List<BirdEntity> entity);
+	void deleteList(List<Integer> entity);
+	
+	void read();
 
 }

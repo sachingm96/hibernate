@@ -24,6 +24,7 @@
 		<!-- Maximum time that a connection is allowed to sit ideal in the pool -->
 		<property name="hibernate.hikari.idleTimeout">200000</property>
 		
+		<property name="format_sql">true</property>
 		<property name="hibernate.show_sql">True</property>
 		<mapping class="com.sachin.bird.entity.BirdEntity"/>
 	</session-factory>
