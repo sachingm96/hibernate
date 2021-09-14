@@ -27,16 +27,17 @@ public class MobileDAOImpl implements MobileDao {
 	public void fetchAll() {
 		try (Session session = factory.openSession()) {
 			Transaction tr = session.beginTransaction();
-			Query query = session.createQuery("from MobileEntity");
+			Query query = session.getNamedQuery("fetchAll ");
 			List mob = query.list();
 			System.out.println(mob);
 		}
 	}
 
-	public String fetchColorByBrand() {
+	public String fetchColorByBrand(String brand) {
 		try (Session session = factory.openSession()) {
-			Query query = session.createQuery("select color from MobileEntity where brand='redmi'");
+			Query query = session.getNamedQuery("fetchColorByBrand");
 			Object obj = query.uniqueResult();
+			query.setParameter("Brand", brand);
 			System.out.println(obj);
 			if (obj != null) {
 				String color = (String) obj;
@@ -46,9 +47,11 @@ public class MobileDAOImpl implements MobileDao {
 		return null;
 	}
 
-	public int updatePriceById() {
+	public int updatePriceById(int price, int id) {
 		try (Session session = factory.openSession()) {
-			Query query = session.createQuery("update MobileEntity mobile set mobile.price='1000' where mobile.id='1'");
+			Query query = session.getNamedQuery("updatePriceById");
+			query.setParameter("Id", id);
+			query.setParameter("Price", price);
 			session.beginTransaction();
 			query.executeUpdate();
 			session.getTransaction().commit();
@@ -59,33 +62,35 @@ public class MobileDAOImpl implements MobileDao {
 
 	public int sumOfPrice() {
 		try (Session session = factory.openSession()) {
-			Query query = session.createQuery("select sum(price) from MobileEntity");
+			Query query = session.getNamedQuery("sumOfPrice");
 			Object obj = query.uniqueResult();
 			System.out.println(obj);
-//			if (obj != null) {
-//				int sum = (int) obj;
-//				return sum;
-//			}
+			if (obj != null) {
+				int sum = (int) obj;
+				return sum;
+			}
 		}
 		return 0;
 	}
 
-	public void maxOfSizeInInches() {
+	public int maxOfSizeInInches() {
 		try (Session session = factory.openSession()) {
-			Query query = session.createQuery("select max(sizeInInches) from MobileEntity");
+			Query query = session.getNamedQuery("maxOfSizeInInches");
 			Object obj = query.uniqueResult();
 			System.out.println(obj);
 			;
 		}
+		return 0;
 
 	}
 
-	public void minOfSizeInInches() {
+	public int minOfSizeInInches() {
 		try (Session session = factory.openSession()) {
-			Query query = session.createQuery("select min(sizeInInches) from MobileEntity");
+			Query query = session.getNamedQuery("minOfSizeInInches");
 			Object obj = query.uniqueResult();
 			System.out.println(obj);
 		}
+		return 0;
 	}
 
 }

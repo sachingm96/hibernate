@@ -8,14 +8,14 @@ public interface MobileDao {
 
 	void fetchAll();
 
-	String fetchColorByBrand();
+	String fetchColorByBrand(String brand);
 
-	int updatePriceById();
+	int updatePriceById(int price, int id);
 
 	int sumOfPrice();
 
-	void maxOfSizeInInches();
+	int maxOfSizeInInches();
 
-	void minOfSizeInInches();
+	int minOfSizeInInches();
 
 }

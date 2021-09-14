@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -18,6 +19,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "mobile_table")
+@NamedQuery(name="fetchAll",query="from MobileEntity")
+@NamedQuery(name="fetchColorByBrand",query="select price from MobileEntity where name=:Brand")
+@NamedQuery(name="updatePriceById",query="update MobileEntity mobile set mobile.price=:Price where mobile.id=:Id")
+@NamedQuery(name="readTotalPrice",query="select sum(price) from MobileEntity")
+@NamedQuery(name="sumOfPrice",query=" select sum(price) from MobileEntity")
+@NamedQuery(name="maxOfSizeInInches",query="select max(sizeInInches) from MobileEntity")
+@NamedQuery(name="minOfSizeInInches",query="select min(sizeInInches) from MobileEntity")
 public class MobileEntity implements Serializable {
 
 	@Id
